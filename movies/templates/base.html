@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>IMDB</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="/static/css/1-col-portfolio.css" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="{% url 'home' %}" >IMDB Home</a>
+                 <div class="col-xs-8 col-xs-offset-2">
+                        <div class="input-group">
+                <div class="input-group-btn search-panel">
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                    	<span id="search_concept">Filter by</span> <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu">
+                      <li><a class="filter">Name</a></li>
+                      <li><a class="filter">Director</a></li>
+                      <li><a class="filter">Genre</a></li>
+                    </ul>
+                </div>
+                <input type="hidden" name="search_param" value="all" id="search_param">
+                <input type="text" class="form-control" id="query" name="x" placeholder="Search term...">
+                <span class="input-group-btn">
+                    <button class="btn btn-default" id="search_movie" type="button"><span class="glyphicon glyphicon-search"></span></button>
+                </span>
+            </div>
+                        </div>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    {% if request.user.is_superuser %}
+                     <li>
+                        <a href="/admin">Admin</a>
+                    </li>
+                    {% endif %}
+                    <li>
+                        <a id="watchlist">Watchlist</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <!-- Page Content -->
+    <div class="container">
+<div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">Movie Destination
+                    <small id="title">Your favarioute movies at one place</small>
+                </h1>
+            </div>
+        </div>
+<table class="table">
+    <thead>
+      <tr>
+        <th>Movie Name</th>
+        <th>Score</th>
+        <th>Popularity</th>
+          <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+    </tbody>
+
+
+</table>
+
+        <!-- Footer -->
+        <footer>
+            <div class="row">
+                <div class="col-lg-12">
+                    <p>Copyright &copy; Your Website 2014</p>
+                </div>
+            </div>
+            <!-- /.row -->
+        </footer>
+
+    </div>
+    <!-- /.container -->
+<!-- jQuery -->
+    <link rel="stylesheet" type="text/css" href="/static/css/sweetalert.min.css" media="screen">
+<script src="/static/js/sweetalert.min.js"></script>
+    <script src="/static/js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="/static/js/bootstrap.min.js"></script>
+    <script src="/static/js/main.js"></script>
+    <script type="text/javascript">
+
+   var app_json = {{movies_list|safe}};
+</script>
+
+</body>
+
+</html>
