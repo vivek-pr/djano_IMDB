@@ -3,7 +3,7 @@ from movies.models import Movie, Director, Genre
 
 
 def port_data():
-    with open('/django_IMDB/imdb.json') as data_file:
+    with open('/home/ubuntu/djano_IMDB/imdb.json') as data_file:
         movies_data = json.load(data_file)
 
     for movie in movies_data:
