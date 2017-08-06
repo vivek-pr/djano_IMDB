@@ -90,7 +90,7 @@ class UserMoviesWatchList(models.Model):
         :return: Bool based on status
         """
         user_watchlist, created = UserMoviesWatchList.objects.get_or_create(user_id=int(user_id))
-        movie = Movie.movie_details(movie_id)
+        movie = Movie.objects.get(id=movie_id)
         user_watchlist_movies = user_watchlist.movie.all()
         if movie not in user_watchlist_movies:
             user_watchlist.movie.add(movie)
