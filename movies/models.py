@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-
+from django.core.validators import MinValueValidator, MaxValueValidator
 
 class Director(models.Model):
     """
@@ -29,7 +29,7 @@ class Movie(models.Model):
     name = models.CharField(verbose_name='Name', max_length=30)
     director = models.ForeignKey(Director, verbose_name="Director")
     genre = models.ManyToManyField(Genre, verbose_name="Genre", blank=True)
-    score = models.IntegerField(verbose_name="Score",default=0)
+    score = models.IntegerField(verbose_name="Score",default=0, validators=[MinValueValidator(0.0), MaxValueValidator(10.0)])
     active = models.BooleanField(verbose_name="Is Active", default=True)
     creation_date = models.DateTimeField('Creation Date', auto_now_add=True)
     last_updated = models.DateTimeField('Last Updated', auto_now=True)

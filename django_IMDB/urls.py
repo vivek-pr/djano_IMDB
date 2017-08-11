@@ -18,8 +18,10 @@ from django.contrib import admin
 from django.contrib.auth import views as auth_views
 from movies.views import search_movies, home, get_watchlist, add_in_watchlist, movie_details
 from django.contrib.auth.decorators import login_required
+from django.views.generic import RedirectView
 
 urlpatterns = [
+    url(r'^admin/login/', login_required(home, login_url='/login/'), name="admin_login"),
     url(r'^admin/', admin.site.urls, name="admin"),
     url(r'^$', login_required(home, login_url='/login/'), name="home"),
     url(r'^search_movie/$', login_required(search_movies, login_url='/login/'), name="search_movie"),

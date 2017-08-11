@@ -3,8 +3,10 @@ from movies.models import Movie, UserMoviesWatchList
 from movies.serializer import MovieSerializer
 from django.http import JsonResponse
 import json
+from django.views.decorators.http import require_http_methods
 
 
+@require_http_methods(['GET'])
 def home(request):
     queryset = Movie.search_movies(None, None)
     serializer = MovieSerializer(queryset, many=True)
@@ -12,6 +14,7 @@ def home(request):
                   context={'movies_list': json.dumps(serializer.data)})
 
 
+@require_http_methods(['GET'])
 def search_movies(request):
     """
     This method help us in getting movie list based on our search criteria.
@@ -28,6 +31,7 @@ def search_movies(request):
     return JsonResponse(serializer.data, safe=False)
 
 
+@require_http_methods(['GET'])
 def movie_details(request):
     """
     This method help us in getting detail of a Movie.
@@ -41,6 +45,7 @@ def movie_details(request):
     return JsonResponse(queryset)
 
 
+@require_http_methods(['GET'])
 def add_in_watchlist(request):
     """
     This method help us in adding a movie in watchlist.
@@ -54,6 +59,7 @@ def add_in_watchlist(request):
     return JsonResponse(status, safe=False)
 
 
+@require_http_methods(['GET'])
 def get_watchlist(request):
     """
     This method help us in getting the list of movies added by user in watchlist

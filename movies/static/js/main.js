@@ -31,7 +31,7 @@ var ApiService = {
             this._get("/watchlist/").done(function(response){
             app.type="wishlist"
             app.loadFromJson(response);
-            app.render("our movies wishlist")
+            app.render("your movies wishlist")
 				})
         },
         getMovieDetail: function(movie_id){

@@ -10,6 +10,10 @@ class MovieAdmin(admin.ModelAdmin):
     """
     list_display = ('name','score', 'director', 'get_genre_list')
 
+    def get_queryset(self, request):
+        qs = super(MovieAdmin, self).get_queryset(request)
+        return qs.filter(active=True)
+
     def get_genre_list(self, obj):
         """
         Method use for getting genre data for every movie
@@ -25,9 +29,9 @@ class MovieAdmin(admin.ModelAdmin):
         :param queryset:
         :return:
         """
-        for query in queryset:
-            query.active = False
-            query.save()
+
+        queryset.active = False
+        queryset.save()
 
 
 
